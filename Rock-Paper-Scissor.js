@@ -16,27 +16,21 @@
 // 1. generate computer choice 
  
 function getComputerChoice(){
-let randomNum = Math.floor(Math.random() * 10);
-let computerChoice ;
-    if(randomNum <= 2){
-       computerChoice = "rock";
+let randomNum = Math.floor(Math.random() * 3);
+    if(randomNum === 0){
+      return "rock"
     }
-        else if(randomNum >= 7){
-          computerChoice =  "paper";      
+        else if(randomNum ===1){
+          return "paper"
         }
-        else{
-           computerChoice = "scissor";
-        }
-    return console.log(computerChoice);
-    
+          else{
+            return computerChoice = "scissor";
+          }  
 }
 
 
 // 2. get human choice
 
 function getHumanChoice(){
-  let humanChoice = prompt("enter your choice");
-  console.log(humanChoice);
-  
+  return prompt("enter your choice"); 
 }
-
