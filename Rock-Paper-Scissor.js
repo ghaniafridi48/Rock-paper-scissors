@@ -10,7 +10,10 @@
 
 
 
+
+
 // 1. generate computer choice 
+// multiply 3 to get values in range 0-2 when floor function is used
  
 function getComputerChoice(){
 let randomNum = Math.floor(Math.random() * 3);
@@ -33,39 +36,59 @@ function getHumanChoice(){
 }
 
 
+
+
 function playGame(){
-
-  let humanScore = 0;
+// keeps track of overall game score
   let computerScore = 0;
-
-  const humanChoice = getHumanChoice();
-  const computerChoice = getComputerChoice();
+  let humanScore = 0;
   
-  function playRound(humanChoice,computerChoice){
+  
+  function playRound(humanChoice,computerChoice) {
+    // avoid letter casing issues , result is always in lowercase ROCK becomes rock
+    humanChoice = humanChoice.toLowerCase(); 
     
     if (humanChoice === computerChoice) {
-      return "its a tie : your choice " + humanChoice + " vs computer choice: " + computerChoice;
-    } else if(
-      humanChoice === "rock" && computerChoice === "scissors" ||
-      humanChoice === "paper" && computerChoice === "rock"  ||
-      humanChoice === "scissors" && computerChoice === "paper") {
+      console.log(`its a tie❗❗\n your choice =  ${humanChoice} \n computer choice =  ${computerChoice}`);
+      
+    }else if (
+      humanChoice === 'rock' && computerChoice === 'scissors' ||
+      humanChoice === 'paper' && computerChoice === 'rock' ||
+      humanChoice === 'scissors' && computerChoice === 'paper'){
+  
+      console.log(`you won 🎉\n ${humanChoice} beats ${computerChoice}\n your choice =  ${humanChoice} \n computer choice =  ${computerChoice}`)
       humanScore++;
-      return "human won" ;
-    } else{
+  
+    }else{
+      console.log(` you lost❌\n ${computerChoice} beats ${humanChoice} \n your choice =  ${humanChoice} \n computer choice =  ${computerChoice}`)
       computerScore++;
-      return "you lost";
     }
-  
-  
+      
+  }
+  // loop the rounds 5 times to get different input each time
+  for (let i=1; i<= 5 ; i++){
+    console.log(`ROUND ${i}`);
+    
+  let humanSelection = getHumanChoice();
+  let computerSelection= getComputerChoice();
+  playRound(humanSelection,computerSelection);
   }
 
-  console.log(playRound(humanChoice,computerChoice));
+  // results
+  console.log(`--------------------------\nRESULTS`);
   
+  if (computerScore === humanScore) {
+    console.log(`its a tie\n computer won ${computerScore} rounds \n you won ${humanScore} rounds`);
+  }else if (computerScore > humanScore){
+    console.log(`you lost the game\n computer won ${computerScore} rounds \n you won ${humanScore} rounds`);
+  }else{
+     console.log(`you won the game\n computer won ${computerScore} rounds \n you won ${humanScore} rounds`);
+  }
 
+  // show the rounds that resuted in a tie 
+  console.log(`TIE ROUNDS : ${5 - (humanScore + computerScore)} `);
 
 }
-
-
 
 
 playGame();
